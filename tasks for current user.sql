@@ -1,0 +1,1 @@
+﻿select p.* from task as p, role_task as q where q.role_id = 3 and q.task_id=p.id;
