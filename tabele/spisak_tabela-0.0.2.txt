@@ -1,0 +1,129 @@
+Database Postgres SQL 8.4.
+
+# entity_type
+--------------------------------------------------------------------------
+id 				- primary key (serial)
+name 			- varchar(100)
+description 	- text - slobodan opis
+--------------------------------------------------------------------------
+
+# entity_definition
+--------------------------------------------------------------------------
+id 				
+entity_type_id 	- int (link na tabelu tipova objekata)
+name			- varchar(100)
+description 	- text - slobodan opis za rekord
+time_unit 		- enum(varchar) (day, hour, minute) - vreme konzumacije objekta, 
+                  na osnovu kojeg se vrsi obracun ()
+[time_resolution 	- enum(day, hour, minute) - jedinica vremena do koje se 
+                  moze vrsiti pregled]
+[price_per_unit - Price per consumation unit. (That is for now. Later on 
+                  the additional tables regarding the different entity 
+				  rates will be created)]
+price			- numeric(10,2) (temporary)		  				  
+code 			- varchar(10)
+--------------------------------------------------------------------------
+
+# entity - LISTA RASPOLOZIVIH OBJEKATA ZA IZNAMLJIVANJE
+--------------------------------------------------------------------------
+id 				- Broj objekta (int)
+definition_id 	- Link na definiciju objekta (int)
+status 			- enum (upotrebljiva, neupotrebljiva, cisti se, itd.)
+--------------------------------------------------------------------------
+
+# reservation
+--------------------------------------------------------------------------
+id 				
+reservation_id	- Reservation unique identifier (varchar)
+client_id 		- Referenca na tabelu klijenata - nosilac rezervacije
+status			- enum (reserved, not shown, cancelled, in use, payed, etc.)
+created_at		- timestamp_without_timezone(0)
+modified_at     - timestamp_without_timezone(0)
+
+--------------------------------------------------------------------------
+
+# reservation_entity
+--------------------------------------------------------------------------
+id  
+guest_id 		- Referenca na tabelu klijenata - podaci o gostu
+entity_id 		- Referenca na tabelu soba
+start 			- bigint (unix time) Date and time of start using the entity
+end 			- bigint (unix time) Date and time of stop using the entity
+reservation_id		- referenca na tabelu rezervacija
+--------------------------------------------------------------------------
+
+# clients
+--------------------------------------------------------------------------
+id
+first_name 	- varchar (100)
+last_name 	- varchar (100)
+address_1 	- varchar (100)
+address_2 	- varchar (100)
+city 		- varchar (100)
+zipcode 	- varchar (20)
+country 	- varchar (100)
+phone 		- varchar (100)
+mobile 		- varchar (100)
+fax 		- varchar (100)
+email 		- varchar (255)
+[
+	company - 
+	company_address - 
+	company_phone - 
+	company_mail - 
+]
+**Ovaj deo jos razraditi
+[billing_type - enum (cash, ccard, paypal, etc.)]
+--------------------------------------------------------------------------
+
+# users
+--------------------------------------------------------------------------
+id
+username - varchar(20)
+password - varchar(100)
+email 	 - varchar(255)
+role_id - int
+
+--------------------------------------------------------------------------
+
+# categories
+--------------------------------------------------------------------------
+id 				
+name 			- varchar(100)
+description 	- text
+parent_id 		- id parent kategorije
+--------------------------------------------------------------------------
+
+
+# entity_category (tabela, koja objekat vezuje sa proizvoljnim brojem katego-
+rija)
+--------------------------------------------------------------------------
+id
+entity_id
+category_id 
+--------------------------------------------------------------------------
+
+
+# features
+--------------------------------------------------------------------------
+id 				- id
+name 			- varchar(100)
+description 	- text
+--------------------------------------------------------------------------
+
+
+# features_entity_definitions (Tabela koja dodeljuje svojstva objektima)
+--------------------------------------------------------------------------
+id
+feature_id
+entity_definition_id
+--------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+

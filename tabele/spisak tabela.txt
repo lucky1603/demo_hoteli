@@ -1,0 +1,105 @@
+reservation
+--------------------------------------------------------------------------
+id 				- Reservation unique identifier (INT)
+
+status			- enum (reserved, not shown, cancelled, in use, payed, etc.)
+--------------------------------------------------------------------------
+
+reservation_entity
+--------------------------------------------------------------------------
+Id - 
+client_id 		- Referenca na tabelu klijenata
+entity_id 	- Referenca na tabelu soba
+from 			- Date and time of start using the entity - DATETIME
+to 				- Date and time of stop using the entity - DATETIME
+
+--------------------------------------------------------------------------
+
+entity_definition
+--------------------------------------------------------------------------
+id 				- INT
+code 			- CHAR(10)
+description 	- CHAR(50)
+entity_type_id 	- int (link na tabelu tipova objekata)
+time_unit 		- enum (day, hour, minute) - vreme konzumacije objekta, 
+                  na osnovu kojeg se vrsi obracun
+time_resolution 	- enum(day, hour, minute) - jedinica vremena do koje se 
+                  moze vrsiti pregled
+price_per_unit 	- Price per consumation unit. (That is for now. Later on 
+                  the additional tables regarding the different entity 
+				  rates will be created)
+--------------------------------------------------------------------------
+
+entity_type
+--------------------------------------------------------------------------
+id 				- int
+name 			- varchar(50)
+description 	- varchar(255)
+--------------------------------------------------------------------------
+
+entities - LISTA RASPOLOZIVIH OBJEKATA ZA IZNAMLJIVANJE
+--------------------------------------------------------------------------
+id 				- Broj objekta (int)
+definition_id 	- Link na definiciju objekta (int)
+status 			- enum (upotrebljiva, neupotrebljiva, cisti se, itd.)
+--------------------------------------------------------------------------
+
+
+categories
+--------------------------------------------------------------------------
+id 				- id kategorije (int)
+name 			- char(50)
+description 	- char(255)
+parent_id 		- id parent kategorije
+--------------------------------------------------------------------------
+
+
+entity_category (tabela, koja objekat vezuje sa proizvoljnim brojem katego-
+rija)
+--------------------------------------------------------------------------
+entity_id
+category_id 
+--------------------------------------------------------------------------
+
+
+features
+--------------------------------------------------------------------------
+id 				- id
+name 			- char(25)
+description 	- char(255)
+--------------------------------------------------------------------------
+
+
+features_entity_definitions (Tabela koja dodeljuje svojstva objektima)
+--------------------------------------------------------------------------
+feature_id
+entity_definition_id
+--------------------------------------------------------------------------
+
+
+client
+--------------------------------------------------------------------------
+id
+first_name - char(50)
+second_name - char(50)
+address - char(255)
+pcode - 
+city - 
+country - 
+phone - 
+email - 
+company - 
+company_address - 
+company_phone - 
+company_mail - 
+**Ovaj deo jos razraditi
+billing_type - enumerator (cash, ccard, paypal, etc.)
+--------------------------------------------------------------------------
+
+
+
+
+
+
+
+
