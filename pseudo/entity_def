@@ -1,0 +1,12 @@
+$entityDef = getModel("entity_definition");
+$entityDef->setId($id);
+
+$name = $entityDef->getName();
+$code = $entityDef->getCode();
+$desc = $entityDef->getDescription();
+$attributes = $entityDef->getAttributes();
+foreach($attributes as $attribute)
+{
+	echo $attribute->getValue();
+	echo $attribute->getName();
+}
