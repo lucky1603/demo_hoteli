@@ -1,0 +1,41 @@
+g## Setovanje skeletona aplikacije
+
+1. Na serveru otici u index direktorijum i startovati
+git clone git:://github.com/zendframework/ZendSkeletonApplication.git <My_App_Name> *** Umesto My_App_Name ubaciti ime svoje aplikacije ***
+
+2. Kada se povuce i kreira ovaj direktorijum, ici u njega i zatim startovati
+curl -sS https://getcomposer.org/installer | php
+cd 
+3. Kada je kreiran composer.phar file startovati
+php composer.phar self-update (za svaki slucaj, da bude poslednja verzija)
+php composer.phar install (to ce malo potrajati)
+
+4. Editovati hosts file i dodati 
+127.0.0.1 comm-app.local
+
+5. Dodati novog virtuelnog hosta na serveru
+<VirtualHost *:80>
+	ServerName comm-app.local
+	DocumentRoot /var/www/CommunicationApp/public
+	SetEnv APPLICATION_ENV "development"
+	<Directory /var/www/CommunicationApp/public>
+		www.it-ebooks.info
+		Chapter 2
+		[ 25 ]
+		DirectoryIndex index.php
+		AllowOverride All
+		Order allow,deny
+		Allow from all
+	</Directory>
+</VirtualHost>
+
+6. Restartovati server
+
+Ako se unese http://comm-app.local, trebalo bi da se pokaze default zend server strana.
+
+Okruzenje je formirano i spremno za konfiguraciju
+
+## Pravljenje modula
+
+1. cd <My_App_Name>/Module
+2. $ git clone git://github.com/zendframework/ZendSkeletonModule.git <Module_Name>
